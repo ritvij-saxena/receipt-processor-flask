@@ -36,6 +36,7 @@ class ReceiptTestCase(unittest.TestCase):
         }
 
         response = self.app.post("/receipts/process", json=receipt_data)
+        print(response)
         self.assertEqual(response.status_code, 400)
         self.assertIn("errors", response.get_json())
 

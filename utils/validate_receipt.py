@@ -16,11 +16,15 @@ def validate_receipt(receipt):
     for item in receipt.get("items", []):
         if "shortDescription" not in item or "price" not in item:
             errors.append("Each item must have 'shortDescription' and 'price' fields.")
+            continue
         try:
             float(item["price"])  # Ensure price is a valid number
         except ValueError:
             errors.append(
                 f"Invalid price for item: {item.get('shortDescription', 'unknown')}"
             )
+        except KeyError:
+            print(f"Field is missing. Actual fields are {item.keys()}")
+            errors.append(f"Field is missing. Actual fields are {item.keys()}")
 
     return errors
