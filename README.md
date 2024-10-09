@@ -32,7 +32,7 @@ The Receipt Processor is a simple RESTful API built using Flask that processes r
 
 ```bash
 git clone https://github.com/ritvij-saxena/receipt-processor-flask.git
-cd receipt_processor_flask
+cd receipt-processor-flask
 ```
 
 ### Create a Virtual Environment (Optional)
