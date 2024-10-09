@@ -131,3 +131,49 @@ The application will start on `http://localhost:8080`.
 3. **Access the API**
 
    The application will be accessible at `http://localhost:8080`.
+
+
+## Testing with Postman
+A Postman collection/test suite file, `Receipt Processor Test Cases.postman_collection.json`, is included with the project. You can import this file into Postman as a collection. Once imported, ensure the server is running and execute the test suite to validate the application's functionality. 
+
+![screenshot](image.png)
+
+Helpful Links:
+- [Importing data in Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/)
+- [Running a Test suite](https://learning.postman.com/docs/tests-and-scripts/run-tests/run-tests-manually/)
+- [Postman Learning Centre](https://learning.postman.com/docs/introduction/overview/)
+
+
+### Improvements (Food for thought)
+
+#### 1. Modularization and Blueprints
+
+Present Method: There may be only one module or little modularization in the Flask application.
+Enhancement: To improve scalability and maintainability, divide the application into distinct modules (for points, receipts, etc.) using Flask Blueprints.
+
+#### 2. Using Flask-Testing for API Testing
+
+The current methodology is simple unit testing.
+Enhancement: To enhance test coverage, employ Flask-Testing by incorporating sophisticated functionalities like database setup and teardown or external service mocking.
+
+#### 3. CORS Handling Improvement
+
+Use Flask-CORS to manage Cross-Origin Resource Sharing if the application is meant to be accessible from several origins (such as a frontend app or mobile app).
+
+#### 4. Rate Limiting Improvement
+
+To stop abuse of the API endpoints, implement rate limiting. Either manually tracking requests by IP/user or by using Flask's middleware, this can be accomplished.
+
+#### 5. Consider Database Strategies and Make Use of Flask-Migrate Improvements
+
+Think of using a integrating a persistent database such as MySQL, PostgreSQL, or MongoDB to store receipts and points. This will ensure data survives application restarts and scales better. Flask-Migrate to handle database migrations with ease when moving to a persistent database (such as PostgreSQL or MySQL).
+
+
+
+We can certainly explore the trade-offs and find the "mostly" correct answer for this problem.
+
+## Acknowledgment
+
+I want to extend a big thank you to Fetch Rewards for offering such an awesome learning experience. This challenge has really helped me deepen my understanding of machine learning workflows—from data preprocessing and modeling to deployment and UI design. It’s been both tough and rewarding, providing a great chance to apply theory to a real-world problem.
+
+I’d love the opportunity to interview with Fetch!
