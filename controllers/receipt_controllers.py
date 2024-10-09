@@ -25,7 +25,12 @@ def process_receipt():
     return jsonify({"id": receipt_id}), 201
 
 
-@receipt_bp.route("/receipts/<receipt_id>/points", methods=["GET"])
+@receipt_bp.route("/receipts/<string:receipt_id>/points", methods=["GET"])
 def get_points(receipt_id):
-    points = get_points_service(receipt_id)
-    return jsonify({"points": points}), 200
+    try:
+        points = get_points_service(receipt_id)
+        return jsonify({"points": points}), 200
+    except ValueError:
+        return jsonify({"error": "Receipt ID not found."}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

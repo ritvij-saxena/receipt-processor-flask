@@ -21,6 +21,8 @@ class ReceiptRepository:
             self.points[receipt_id] = points
 
     def get_points(self, receipt_id):
+        if receipt_id not in self.points:
+            raise KeyError(f"Receipt ID {receipt_id} not found.")
         return self.points.get(receipt_id, 0)
 
 

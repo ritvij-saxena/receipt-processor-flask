@@ -25,4 +25,8 @@ def calculate_and_store_points(receipt_id, receipt_data):
 
 
 def get_points_service(receipt_id):
-    return repository.get_points(receipt_id)
+    try:
+        points = repository.get_points(receipt_id)
+        return points
+    except KeyError:
+        raise ValueError("Receipt ID not found.")
