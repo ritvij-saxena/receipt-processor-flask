@@ -214,6 +214,8 @@ A Postman collection/test suite file, `Receipt Processor Test Cases.postman_coll
 
 ![screenshot](image.png)
 
+**PLEASE NOTE**: The above test will work only with V1. V2 Collections will added soon.
+
 Helpful Links:
 - [Importing data in Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/)
 - [Running a Test suite](https://learning.postman.com/docs/tests-and-scripts/run-tests/run-tests-manually/)
