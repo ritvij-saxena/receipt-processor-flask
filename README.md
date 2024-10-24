@@ -14,7 +14,7 @@ The Receipt Processor is a simple RESTful API built using Flask that processes r
     - Total amount conditions.
     - Number of items in the receipt.
     - Specific rules related to item descriptions, purchase date, and time.
-- V2 
+- V2 (489ab84206e04ce4e5d74239a57c1278daeb58b5 onwards)
   - In this version, I added a new feature where for every first, second, and third receipts submitted, we award the user with 1000, 500, 250 additional points respectively. 
   - This changes the existing endpoints.
     - **POST** `/receipts/process` becomes **POST** `/receipts/process?user_id=<user_id>`
