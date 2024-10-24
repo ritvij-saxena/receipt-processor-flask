@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import patch
 from services.receipt_service import get_points_service
-from repository.repository import repository
+from repository.user_repository import receipt_repository
 
 
 class TestReceiptService(unittest.TestCase):
@@ -12,8 +12,8 @@ class TestReceiptService(unittest.TestCase):
         self.test_receipt_id = "test-id"
         self.test_points = 30
         # Add test data to repository
-        repository.add_receipt(self.test_receipt_id, {"retailer": "Test Retailer"})
-        repository.add_points(self.test_receipt_id, self.test_points)
+        receipt_repository.add_receipt(self.test_receipt_id, {"retailer": "Test Retailer"})
+        receipt_repository.add_points(self.test_receipt_id, self.test_points)
 
     def test_get_points_success(self):
         points = get_points_service(self.test_receipt_id)
@@ -25,8 +25,8 @@ class TestReceiptService(unittest.TestCase):
 
     def tearDown(self):
         # Clear the repository after each test
-        repository.receipts.clear()
-        repository.points.clear()
+        receipt_repository.receipts.clear()
+        receipt_repository.points.clear()
 
 
 if __name__ == "__main__":

@@ -7,13 +7,21 @@ The Receipt Processor is a simple RESTful API built using Flask that processes r
 [Fetch Rewards Challenge](https://github.com/fetch-rewards/receipt-processor-challenge)
 
 ## Features
-
-- Process receipts submitted in JSON format.
-- Calculate points based on several criteria, including:
-  - Alphanumeric characters in the retailer name.
-  - Total amount conditions.
-  - Number of items in the receipt.
-  - Specific rules related to item descriptions, purchase date, and time.
+- V1 (1776c277634658c46e1469b24de794bc0d05aaa6)
+  - Process receipts submitted in JSON format.
+  - Calculate points based on several criteria, including:
+    - Alphanumeric characters in the retailer name.
+    - Total amount conditions.
+    - Number of items in the receipt.
+    - Specific rules related to item descriptions, purchase date, and time.
+- V2 
+  - In this version, I added a new feature where for every first, second, and third receipts submitted, we award the user with 1000, 500, 250 additional points respectively. 
+  - This changes the existing endpoints.
+    - **POST** `/receipts/process` becomes **POST** `/receipts/process?user_id=<user_id>`
+    - Added a new controller called `user_controller.py`
+      - **POST** `/users/adduser`
+      - **GET** `/users/getuser`
+  - Refactored code `repository.py` split into `user_repository.py` and `receipt_repository.py`.
 
 ## Technologies Used
 
@@ -66,7 +74,7 @@ python app.py
 
 The application will start on `http://localhost:8080`.
 
-### API Endpoints
+### API Endpoints (V1)
 
 - **POST** `/receipts/process`: Submit a receipt in JSON format.
 
@@ -108,6 +116,74 @@ The application will start on `http://localhost:8080`.
   **Response Example**:
   ```json
   { "points": 32 }
+  ```
+### API Endpoints (V2) [New Additions Only]
+
+- **POST** `/receipts/process?user_id=<user_id>`: Submit a receipt in JSON format.
+
+  **Request Body Example**:
+  ```json
+    {
+    "retailer": "Target",
+    "purchaseDate": "2022-01-01",
+    "purchaseTime": "13:01",
+    "items": [
+        {
+        "shortDescription": "Mountain Dew 12PK",
+        "price": "6.49"
+        },{
+        "shortDescription": "Emils Cheese Pizza",
+        "price": "12.25"
+        },{
+        "shortDescription": "Knorr Creamy Chicken",
+        "price": "1.26"
+        },{
+        "shortDescription": "Doritos Nacho Cheese",
+        "price": "3.35"
+        },{
+        "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+        "price": "12.00"
+        }
+    ],
+    "total": "35.35"
+    }
+  ```
+
+  **Response Example**:
+  ```json
+  { "id": "7fb1377b-b223-49d9-a31a-5a02701dd310" }
+  ```
+
+- **POST** `/users/adduser`: A simple POST endpoint where you provide a request object with first and last name and you get a user_id in return.
+  **Request Example**:
+  ```json
+   {
+    "first_name": "Ritvij",
+    "last_name": "Saxena"
+   }
+  ```
+
+  **Response Example**:
+  ```json
+  { 
+    "message": "user added successfully",
+    "user_id": "8d250eac-7778-46cd-8049-e0b23d93d07d"  
+  }
+  ```
+- **GET** `/users/getusers/<user_id>`: A simple Getter endpoint where you provide the user_id and receive back the user object.
+  **Request Example**
+  `GET http://localhost:8080/users/getuser/35d741c6-eab9-4f70-b1bf-08fbc908f95b`
+  
+  **Response Example**
+  ```json
+  {
+    "user": {
+    "first_name": "Ritvij",
+    "id": "35d741c6-eab9-4f70-b1bf-08fbc908f95b",
+    "last_name": "Saxena",
+    "total_receipts_submitted": 2
+    }
+  }
   ```
 
 ## Running the Application with Docker

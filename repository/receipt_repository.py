@@ -1,7 +1,6 @@
 from collections import defaultdict
 import threading
 
-
 # In-memory store for receipts and points
 class ReceiptRepository:
     def __init__(self):
@@ -25,6 +24,5 @@ class ReceiptRepository:
             raise KeyError(f"Receipt ID {receipt_id} not found.")
         return self.points.get(receipt_id, 0)
 
-
 # Singleton instance of ReceiptRepository
-repository = ReceiptRepository()
+receipt_repository = ReceiptRepository()
