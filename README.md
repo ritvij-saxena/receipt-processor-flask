@@ -117,6 +117,7 @@ The application will start on `http://localhost:8080`.
   ```json
   { "points": 32 }
   ```
+  
 ### API Endpoints (V2) [New Additions Only]
 
 - **POST** `/receipts/process?user_id=<user_id>`: Submit a receipt in JSON format.
@@ -153,8 +154,49 @@ The application will start on `http://localhost:8080`.
   ```json
   { "id": "7fb1377b-b223-49d9-a31a-5a02701dd310" }
   ```
+  
+- **GET** `/receipts/<receipt_id>`: A simple Getter where you provide the receipt_id and you receive receipt and points awarded for that receipt.
+  
+  **Request Example**: 
+  `GET localhost:8080/receipts/16acb0ce-396f-4cca-a77a-90ef21431c8d`
+
+  **Response Example**:
+  ```json
+  {
+    "receipt": {
+        "items": [
+            {
+                "price": "6.49",
+                "shortDescription": "Mountain Dew 12PK"
+            },
+            {
+                "price": "12.25",
+                "shortDescription": "Emils Cheese Pizza"
+            },
+            {
+                "price": "1.26",
+                "shortDescription": "Knorr Creamy Chicken"
+            },
+            {
+                "price": "3.35",
+                "shortDescription": "Doritos Nacho Cheese"
+            },
+            {
+                "price": "12.00",
+                "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  "
+            }
+        ],
+        "points": 1028,
+        "purchaseDate": "2022-01-01",
+        "purchaseTime": "13:01",
+        "retailer": "Target",
+        "total": "35.35"
+    }
+  }
+  ```
 
 - **POST** `/users/adduser`: A simple POST endpoint where you provide a request object with first and last name and you get a user_id in return.
+  
   **Request Example**:
   ```json
    {
@@ -170,7 +212,9 @@ The application will start on `http://localhost:8080`.
     "user_id": "8d250eac-7778-46cd-8049-e0b23d93d07d"  
   }
   ```
+  
 - **GET** `/users/getusers/<user_id>`: A simple Getter endpoint where you provide the user_id and receive back the user object.
+  
   **Request Example**
   `GET http://localhost:8080/users/getuser/35d741c6-eab9-4f70-b1bf-08fbc908f95b`
   
