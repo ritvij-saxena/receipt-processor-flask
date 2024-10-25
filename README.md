@@ -20,7 +20,7 @@ The Receipt Processor is a simple RESTful API built using Flask that processes r
     - **POST** `/receipts/process` becomes **POST** `/receipts/process?user_id=<user_id>`
     - Added a new controller called `user_controller.py`
       - **POST** `/users/adduser`
-      - **GET** `/users/getuser`
+      - **GET** `/users/getuser/<user_id>`
   - Refactored code `repository.py` split into `user_repository.py` and `receipt_repository.py`.
 
 ## Technologies Used
